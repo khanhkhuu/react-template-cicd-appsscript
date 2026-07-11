@@ -2,7 +2,9 @@ name: CI-CD
 
 on:
   push:
-    branches: '**'  
+    branches:
+      - dev
+      - main
 
 jobs:
   ci-cd:
@@ -32,5 +34,10 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Deploy project to Apps Script
-        run: bash deploy.sh "${{ github.event.head_commit.message }}"
+      - name: Deploy to Dev Environment
+        if: github.ref == 'refs/heads/dev'
+        run: bash deploy.sh dev "${{ github.event.head_commit.message }}"
+
+      - name: Deploy to Prod Environment
+        if: github.ref == 'refs/heads/main'
+        run: bash deploy.sh prod "${{ github.event.head_commit.message }}"
