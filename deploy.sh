@@ -13,11 +13,11 @@ else
     exit 1
 fi
 
-for f in ./dist/backend/*
-do
-    echo $f
-    cp $f ./dist
-done
+# Copy backend files to dist
+cp ./dist/backend/* ./dist/
+
+# Remove backend folder to avoid duplicate deployment
+rm -rf ./dist/backend
 
 # Copy appsscript.json manifest file
 cp ./src/backend/appsscript.json ./dist
