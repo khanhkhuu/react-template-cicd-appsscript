@@ -19,6 +19,9 @@ do
     cp $f ./dist
 done
 
+# Copy appsscript.json manifest file
+cp ./src/backend/appsscript.json ./dist
+
 clasp push -f
 
 deployments=$(clasp deployments)
