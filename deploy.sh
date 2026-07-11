@@ -13,7 +13,7 @@ else
     exit 1
 fi
 
-for f in ./src/backend/*
+for f in ./dist/backend/*
 do
     echo $f
     cp $f ./dist
